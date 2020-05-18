@@ -1,0 +1,10 @@
+<h1>Create a New Todo</h1>
+
+<%= form_for @todo do |f| %>
+  <%= label_tag(:title, "Title for the Todo:") %>
+  <%= f.text_field :title %> </br>
+
+  <%= label_tag(:note, "Add a description") %> 
+  <%= f.text_area :note %> </br>
+  <%= f.submit "Add to the list" %>
+<% end %>
