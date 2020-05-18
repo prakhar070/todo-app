@@ -1,8 +1,25 @@
-<%= link_to "New Todo Item", new_todo_path %>
-<% @todos.each do |todo| %>
-    <li>
-        <%= link_to todo.title, todo_path(todo.id) %>
-        <%= link_to "edit", edit_todo_path(todo[:id]) %>
-        <%= link_to "delete", todo, method: :delete, data: { confirm: "You sure?" }%>
-    </li>
-<% end %>
+<div class="container py-4">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Deadline</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+    
+    <tbody>
+        <% @todos.each do |todo| %>
+        <tr>
+            <td id="nolink"><%= link_to todo.title, todo_path(todo.id), class: "text-light"%></td>
+            <td><%= todo.note %></td>
+            <td><%= todo.deadline %></td>
+            <td><%= link_to "edit", edit_todo_path(todo.id), class: "btn btn-light"  %></td>
+            <td><%= link_to "delete", todo, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-light" %></td> 
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

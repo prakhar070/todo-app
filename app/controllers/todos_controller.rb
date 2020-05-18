@@ -1,7 +1,7 @@
 class TodosController < ApplicationController
   def index
     #fetch all the todos
-    @todos = Todo.all
+    @todos = Todo.all.order([:deadline])
   end
 
   def show
@@ -16,7 +16,7 @@ class TodosController < ApplicationController
 
 
   def create
-    #create a new todo 
+    #create a new todo
     @todo = Todo.create(todo_params)
     redirect_to @todo
   end
