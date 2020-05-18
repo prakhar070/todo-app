@@ -1,0 +1,11 @@
+<div class="container py-4">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><%= @todo[:title]%></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= @todo[:deadline] %></h6>
+            <p class="card-text"><%= @todo[:note]%></p>
+            <%= link_to "edit", edit_todo_path(@todo[:id]), class: "card-link"  %>
+            <%= link_to "delete", @todo, method: :delete, data: { confirm: "You sure?" }, class: "card-link" %> 
+        </div>
+    </div>
+</div>
