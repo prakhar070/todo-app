@@ -1,3 +1,4 @@
-#nolink { 
-    text-decoration:none; 
+#error {
+    color: red;
+    line-height: 20px;
 }

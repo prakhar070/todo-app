@@ -1,7 +1,9 @@
 class TodosController < ApplicationController
   def index
     #fetch all the todos
-    @todos = Todo.all.order([:deadline])
+    #first the todos should be sorted according to the deadline and for the same deadline
+    #the todos should be sorted by the priority
+    @todos = Todo.all.order("deadline ASC, priority DESC")
   end
 
   def show
@@ -14,11 +16,14 @@ class TodosController < ApplicationController
     @todo = Todo.new
   end
 
-
   def create
     #create a new todo
-    @todo = Todo.create(todo_params)
-    redirect_to @todo
+    @todo = Todo.new(todo_params)
+    if @todo.save
+      redirect_to @todo
+    else
+      render :new
+    end
   end
 
   def edit
@@ -28,8 +33,11 @@ class TodosController < ApplicationController
   def update
     #update an existing todo
     @todo = Todo.find(params[:id])
-    @todo.update todo_params
-    redirect_to @todo
+    if @todo.update(todo_params)
+        redirect_to @todo
+    else
+        render :edit
+    end
   end
 
   def destroy
@@ -40,7 +48,8 @@ class TodosController < ApplicationController
   end
 
   private
+
   def todo_params
-    params.require(:todo).permit(:title, :note, :deadline)
+    params.require(:todo).permit(:title, :note, :deadline, :priority)
   end
 end

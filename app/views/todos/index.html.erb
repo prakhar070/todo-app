@@ -4,6 +4,7 @@
             <tr>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
+                <th scope="row">Priority</th>
                 <th scope="col">Deadline</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -15,6 +16,7 @@
         <tr>
             <td id="nolink"><%= link_to todo.title, todo_path(todo.id), class: "text-light"%></td>
             <td><%= todo.note %></td>
+            <td><%= todo.priority %></td>
             <td><%= todo.deadline %></td>
             <td><%= link_to "edit", edit_todo_path(todo.id), class: "btn btn-light"  %></td>
             <td><%= link_to "delete", todo, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-light" %></td> 
